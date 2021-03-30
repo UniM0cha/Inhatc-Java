@@ -29,7 +29,7 @@ public class CalculatorEvent extends JFrame implements ActionListener{
 		top.setLayout(new BorderLayout());
 		
 		//제목
-		JLabel lblTitle = new JLabel("Swing 으로 구현한 계산기",JLabel.CENTER);
+		JLabel lblTitle = new JLabel("Swing으로 구현한 계산기",JLabel.CENTER);
 		top.add(lblTitle,BorderLayout.NORTH);
 		
 		//입력란
