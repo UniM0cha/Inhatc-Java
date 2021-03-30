@@ -11,14 +11,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class CalculatorEvent extends JFrame implements ActionListener{
+public class CalculatorWriting extends JFrame implements ActionListener{
 	
 	JTextField txt;
 	JButton[] btn = new JButton[16];
 	JButton clr;
 	int num1, num2, flag = 0;
 	
-	public CalculatorEvent(String title, int x, int y) {
+	public CalculatorWriting(String title, int x, int y) {
 		this.setTitle(title);
 		this.setSize(x, y);
 		this.setLocationRelativeTo(this);
@@ -79,59 +79,35 @@ public class CalculatorEvent extends JFrame implements ActionListener{
 	}
 
 	public static void main(String[] args) {
-		new CalculatorEvent("계산기",250,350);
+		new CalculatorWriting("계산기",250,350);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JButton obj = (JButton) e.getSource();
-		if(obj == btn[3] || obj == btn[7] || obj == btn[11] || obj == btn[15]) {
-			num1 = Integer.parseInt(txt.getText());
-			txt.setText(obj.getText());
-			if(obj == btn[3]) {
-				flag = 1;
-			}else if(obj == btn[7]) {
-				flag = 2;
-			}else if(obj == btn[11]) {
-				flag = 3;
-			}else {
-				flag = 4;
-			}
-			
-		}else if(obj == btn[14]) {
-			num2 = Integer.parseInt(txt.getText());
-			switch(flag) {
-			case 0:
-				break;
-			case 1:
-				txt.setText(Integer.toString(num1 + num2));
-				break;
-			case 2:
-				txt.setText(Integer.toString(num1 - num2));
-				break;
-			case 3:
-				txt.setText(Integer.toString(num1 * num2));
-				break;
-			case 4:
-				txt.setText(Integer.toString(num1 / num2));
-				break;
-			}
-			flag = 0;
-		}else if(obj == clr) {
-			txt.setText(" ");
-			flag = 0;
-		}else {
-			if(txt.getText().equals(" ")) {
-				txt.setText("");
-			}
-			if(flag != 0) {
-				txt.setText("");
-			}
-			String newText = txt.getText() + obj.getText();
-			txt.setText(newText);
-		}
-	}
+		JButton ls = (JButton) e.getSource();
 
+		txt.setText(txt.getText() + ls.getText());
+	}
 }
 
-//구현 못한 것 : 다항식 계산 / 소수점 / 실수계산
+/* 한칸 지우기
+public void actionPerformed(ActionEvent e) {
+	int n = label.getText().length()-1;
+	
+	if (n == 0) {
+		label.setText("");
+		info.setText("수식을 입력하세요 ");
+		flag = 0;
+	}						
+	else if (n > 0 && n <= 10) {
+		label.setFont(new Font("맑은 고딕", 0, 40));
+		label.setText(label.getText().substring(0, n));
+		info.setText("수식을 지우는 중입니다 ");						
+	}						
+	else {
+		label.setFont(new Font("맑은 고딕", 0, 35));
+		label.setText(label.getText().substring(0, n));
+		info.setText("수식을 지우는 중입니다 ");
+	}
+}
+*/
