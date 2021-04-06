@@ -21,14 +21,17 @@ public class JLabelEx extends JFrame{
 
 		//System.out.println(System.getProperty("user.dir"));
 		
+		//전화기 이미지 출력
 		ImageIcon iconTel = new ImageIcon("images/tel.png");
 		JLabel lblImg = new JLabel(iconTel);
 		add(lblImg);
 		
+		//자바 이미지 출력
 		ImageIcon iconJava = new ImageIcon("images/java.png");
 		JLabel lblImg2 = new JLabel(iconJava);
 		add(lblImg2);
 		
+		//화살표 이미지가 들어간 버튼 생성
 		ImageIcon arrWhite = new ImageIcon("images/right_arrow_white.png");
 		ImageIcon arrGreen = new ImageIcon("images/right_arrow_green.png");
 		JButton btn = new JButton("버튼", arrWhite);
@@ -36,10 +39,6 @@ public class JLabelEx extends JFrame{
 		btn.setRolloverIcon(arrGreen);
 		btn.setPressedIcon(arrGreen);		
 		add(btn);
-		
-		
-		
-		
 		
 		this.setVisible(true);
 	}

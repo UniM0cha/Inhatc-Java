@@ -28,14 +28,17 @@ public class CheckBoxEx extends JFrame implements ItemListener{
 		
 		JLabel lbl1 = new JLabel("사과 100원, 배 500원, 체리 2000원");
 		
+		//사과 체크박스
 		chk1 = new JCheckBox("사과");
 		chk1.addItemListener(this);
 		chk1.setBorderPainted(true);
 		
+		//배 체크박스
 		chk2 = new JCheckBox("배");
 		chk2.addItemListener(this);
 		chk2.setBorderPainted(true);
 		
+		//체리 체크박스
 		chk3 = new JCheckBox("체리");
 		chk3.addItemListener(this);
 		chk3.setBorderPainted(true);
@@ -51,6 +54,7 @@ public class CheckBoxEx extends JFrame implements ItemListener{
 		JPanel Bottom = new JPanel();
 		add(Bottom,BorderLayout.SOUTH);
 		
+		//남자 여자 라디오 버튼 (그룹생성)
 		ButtonGroup bg = new ButtonGroup();
 		JRadioButton rbMan = new JRadioButton("남자");
 		JRadioButton rbWoman = new JRadioButton("여자");
@@ -60,10 +64,6 @@ public class CheckBoxEx extends JFrame implements ItemListener{
 		
 		Bottom.add(rbMan);
 		Bottom.add(rbWoman);
-		
-		
-		
-		
 		
 		this.setVisible(true);
 	}
@@ -79,6 +79,7 @@ public class CheckBoxEx extends JFrame implements ItemListener{
 		
 		Object obj = e.getItem();
 		
+		//체크박스 기능 구현
 		if(e.getStateChange() == ItemEvent.SELECTED) {
 			if (obj == chk1) {
 				sum += 100;

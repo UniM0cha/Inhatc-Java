@@ -26,13 +26,11 @@ public class CommonAPI extends JFrame implements ActionListener{
 		b1.addActionListener(this);
 		
 		b2 = new JButton("모양 정보");
+		//글자 색, 배경, 폰트 지정
 		b2.setForeground(Color.magenta);
 		b2.setBackground(Color.yellow);
 		b2.setFont(new Font("나눔고딕", Font.BOLD, 20));
-		//b2.setEnabled(false);
-		//b2.setVisible(false);
-		
-		b2.setOpaque(true);
+		b2.setOpaque(true);	//맥은 설정해야 배경색이 나옵니다...
 		b2.addActionListener(this);
 		
 		add(b1);
@@ -49,9 +47,11 @@ public class CommonAPI extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
 		if (obj == b1) {
+			//b1 버튼을 누를 때 위치와 크기 출력
 			System.out.println("위치 : " + b1.getX() + ", " + b1.getY());
 			System.out.println("크기 : " + b1.getWidth() + ", " + b1.getHeight());
 		} else if (obj == b2) {
+			//b2 버튼을 누를 때 폰트와 글자색 출력
 			System.out.println("폰트 : " + b2.getFont());
 			System.out.println("글자색 : " + b2.getForeground());
 		}
