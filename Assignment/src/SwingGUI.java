@@ -73,5 +73,4 @@ public class SwingGUI extends JFrame {
 	public static void main(String[] args) {
 		new SwingGUI("Cotainer & Component",400, 280);
 	}
-
 }
