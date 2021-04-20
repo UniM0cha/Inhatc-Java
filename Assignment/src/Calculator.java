@@ -17,6 +17,7 @@ public class Calculator extends JFrame implements ActionListener{
 	JButton[] btn = new JButton[16];
 	JButton clr;
 	int num1, num2, flag = 0;
+	private JButton c;
 	
 	public Calculator(String title, int x, int y) {
 		this.setTitle(title);
@@ -60,10 +61,17 @@ public class Calculator extends JFrame implements ActionListener{
 		JPanel bottom = new JPanel();
 		bottom.setLayout(new BorderLayout());
 		
+		JPanel can = new JPanel();
+		bottom.add(can,BorderLayout.NORTH);
+		
+		c = new JButton("c");
+		c.addActionListener(this);
+		can.add(c);
+		
 		//클리어 버튼
 		clr = new JButton("Clear");
 		clr.addActionListener(this);
-		bottom.add(clr,BorderLayout.NORTH);
+		can.add(clr);
 		
 		//이름
 		JLabel lblName = new JLabel("만든이 : 이정윤", JLabel.RIGHT);
@@ -84,30 +92,18 @@ public class Calculator extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JButton ls = (JButton) e.getSource();
-
-		txt.setText(txt.getText() + ls.getText());
+		JButton obj = (JButton) e.getSource();
+		int n = txt.getText().length()-1;
+		if (obj == c) {
+			if (n > 0) {
+				txt.setText(txt.getText().substring(0, n));
+			}
+		}
+		else if (obj == clr) {
+			txt.setText("");
+		}
+		else {
+			txt.setText(txt.getText() + obj.getText());
+		}
 	}
 }
-
-/* 한칸 지우기
-public void actionPerformed(ActionEvent e) {
-	int n = label.getText().length()-1;
-	
-	if (n == 0) {
-		label.setText("");
-		info.setText("수식을 입력하세요 ");
-		flag = 0;
-	}						
-	else if (n > 0 && n <= 10) {
-		label.setFont(new Font("맑은 고딕", 0, 40));
-		label.setText(label.getText().substring(0, n));
-		info.setText("수식을 지우는 중입니다 ");						
-	}						
-	else {
-		label.setFont(new Font("맑은 고딕", 0, 35));
-		label.setText(label.getText().substring(0, n));
-		info.setText("수식을 지우는 중입니다 ");
-	}
-}
-*/
