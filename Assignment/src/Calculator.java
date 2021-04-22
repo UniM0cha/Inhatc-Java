@@ -44,7 +44,7 @@ public class Calculator extends JFrame implements ActionListener{
 		JPanel center = new JPanel();
 		center.setLayout(new GridLayout(4,4));
 		
-		//버튼
+		//숫자, 연산기호 버튼
 		String name[] = {"7","8","9","+","4","5","6","-","1","2","3","*","0",".","=","/"};
 		
 		int i = 0;
@@ -64,7 +64,8 @@ public class Calculator extends JFrame implements ActionListener{
 		JPanel can = new JPanel();
 		bottom.add(can,BorderLayout.NORTH);
 		
-		c = new JButton("c");
+		//C 버튼
+		c = new JButton("C");
 		c.addActionListener(this);
 		can.add(c);
 		
