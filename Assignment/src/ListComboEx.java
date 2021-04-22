@@ -1,11 +1,10 @@
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Vector;
 
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -13,13 +12,15 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-public class ListComboEx extends JFrame{
+public class ListComboEx extends JFrame implements ActionListener{
 
+	private String[] data = new String[] {"data1","data2","data3","data4","data5","data6"};
 	private JList<String> lst;
-	private ArrayList<String> lstVec = new ArrayList<>();
+	// Jlist에는 addItem이 존재하지 않아서 model을 이용해 추가해준다.
+	private DefaultListModel<String> model = new DefaultListModel<>();
 	private JButton btnRight, btnLeft;
 	private JComboBox<String> cb;
-	private ArrayList<String> cbVec = new ArrayList<>();
+	private Vector<String> cbVec = new Vector<>();
 
 	public ListComboEx(int width, int height, String title) {
 		// TODO 프레임 정의
@@ -29,13 +30,13 @@ public class ListComboEx extends JFrame{
 		this.setLocationRelativeTo(this);
 		this.setLayout(new FlowLayout());
 		
+		// model 초기화
+		for(String str : data)
+			model.addElement(str);
 		
-		lstVec.add("one");
-		cbVec.add("one");
+		// 멤버함수로 구현
 		createWest();
-		
 		createCenter();
-		
 		createEast();
 		
 		this.setVisible(true);
@@ -45,7 +46,8 @@ public class ListComboEx extends JFrame{
 		// TODO 리스트 구현
 		JPanel panWest = new JPanel();
 		
-		lst = new JList<>(lstVec);
+		lst = new JList<>(model);
+		
 		JScrollPane sp = new JScrollPane(lst);
 		sp.setPreferredSize(new Dimension(100,200));
 		
@@ -56,10 +58,12 @@ public class ListComboEx extends JFrame{
 	private void createCenter() {
 		// TODO 오른쪽 왼쪽 버튼 구현
 		JPanel panCenter = new JPanel(new FlowLayout(FlowLayout.CENTER,0,45));
-		panCenter.setPreferredSize(new Dimension(100,200));
+		panCenter.setPreferredSize(new Dimension(50,200));
 		
 		btnRight = new JButton(">>");
+		btnRight.addActionListener(this);
 		btnLeft = new JButton("<<");
+		btnLeft.addActionListener(this);
 		
 		panCenter.add(btnRight);
 		panCenter.add(btnLeft);
@@ -71,7 +75,7 @@ public class ListComboEx extends JFrame{
 		JPanel panEast = new JPanel();
 		
 		cb = new JComboBox<>(cbVec);
-		cb.setPreferredSize(new Dimension(100,200));
+		cb.setPreferredSize(new Dimension(100,20));
 		
 		panEast.add(cb);
 		this.add(panEast);
@@ -80,7 +84,32 @@ public class ListComboEx extends JFrame{
 	public static void main(String[] args) {
 		// TODO	프레임 생성
 		new ListComboEx(400, 300, "리스트콤보예제");
-
 	}
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO 버튼 이벤트 구현
+		Object obj = e.getSource();
+		if (obj == btnRight) {
+			// 선택되지 않았음에도 값이 들어가는 현상 발생
+			if(lst.getSelectedValue() != null) {
+				// 리스트에서 삭제함과 동시에 콤보박스에 삽입
+				cb.addItem(model.remove(lst.getSelectedIndex()));
+			}
+		}
+		else if (obj == btnLeft) {
+			// 콤보박스에 데이터가 없는 경우 오류발생
+			if(!cbVec.isEmpty()) {
+				// 콤보박스에서 삭제함과 동시에 리스트에 삽입
+				model.addElement(cbVec.remove(cb.getSelectedIndex()));
+				// 연속으로 제거하려고 하면 오류발생
+				if(cbVec.size() > 0)
+					cb.setSelectedIndex(0);
+				else
+					cb.setSelectedIndex(-1);
+			}
+		}
+		
+		
+	}
 }
