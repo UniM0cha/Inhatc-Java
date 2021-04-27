@@ -11,11 +11,15 @@ import javax.swing.JTextField;
 
 public class Calculator extends JFrame implements ActionListener{
 	
-	JTextField txt;
-	JButton[] btn = new JButton[16];
-	JButton clr;
-	int num1, num2, flag = 0;
+	JTextField txt; // 텍스트필드
+	JButton[] btn = new JButton[16]; // 입력버튼
+	JButton clr; // 클리어 버튼
 	private JButton c;
+	int op = 0; // 연산자를 구별하기 위한 변수
+	double num = 0;
+	double acc = 0;
+	boolean isCal = false;
+	boolean isFirst = true;
 	
 	public Calculator(String title, int x, int y) {
 		this.setTitle(title);
@@ -91,18 +95,90 @@ public class Calculator extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JButton obj = (JButton) e.getSource();
-		int n = txt.getText().length()-1;
-		if (obj == c) {
-			if (n > 0) {
-				txt.setText(txt.getText().substring(0, n));
+		// 버튼의 텍스트를 불러와 변수 s에 저장
+		String s = e.getActionCommand();
+		
+		// +,-,*,/,= 등 기능키에 대한 정의
+		if(s == "+" || s == "-" || s == "*" || s == "/" || s == "=") {
+			isCal = true;
+			if (isFirst) {
+				if(!txt.getText().equals(""))
+					acc = Double.parseDouble(txt.getText());
+				isFirst = false;
+				setOperator(s);
+				return;
+			}
+			
+			// 후처리 계산을 위해 op변수에 연산자 저장
+			num = Double.parseDouble(txt.getText());
+			switch(op) {
+			case 1:
+				acc += num;
+				break;
+			case 2:
+				acc -= num;
+				break;
+			case 3:
+				acc *= num;
+				break;
+			case 4:
+				acc /= num;
+				break;
+			}
+			
+			setOperator(s);
+		}
+
+		else if (s == "C") {
+			// c구현
+			int len = txt.getText().length();
+			if (len > 0) {
+				txt.setText(txt.getText().substring(0, len-1));
 			}
 		}
-		else if (obj == clr) {
+		else if (s == "Clear") {
+			// clear구현
 			txt.setText("");
+			num = 0;
+			op = 0;
+			isFirst = true;
+			isCal = false;
+			return;
 		}
 		else {
-			txt.setText(txt.getText() + obj.getText());
+			// 숫자키 구현
+			if (isCal) {
+				txt.setText("");
+			}
+			txt.setText(txt.getText() + s);
+			isCal = false;
+		}
+	}
+
+	private void setOperator(String s) {
+		if(s == "+") {
+			op = 1;
+			txt.setText("+");
+		}
+		else if (s == "-") {
+			op = 2;
+			txt.setText("-");
+		}
+		else if (s == "*") {
+			op = 3;
+			txt.setText("*");
+		}
+		else if (s == "/") {
+			op = 4;
+			txt.setText("/");
+		}
+		else if (s == "=") {
+			txt.setText(acc + "");
+			op = 0;
+			acc = 0;
+			num = 0;
+			isFirst = true;
+			isCal = true;
 		}
 	}
 }
