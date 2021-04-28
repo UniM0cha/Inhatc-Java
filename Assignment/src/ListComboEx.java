@@ -37,8 +37,8 @@ public class ListComboEx extends JFrame implements ActionListener{
 		// 멤버함수로 구현
 		createWest();
 		createCenter();
-		createEast();
 		
+		createEast();
 		this.setVisible(true);
 	}
 
