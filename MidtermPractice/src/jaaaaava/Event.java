@@ -8,12 +8,14 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Event extends JFrame implements MouseListener, KeyListener, MouseMotionListener {
+public class Event extends JFrame implements MouseListener, KeyListener, MouseMotionListener, MouseWheelListener {
 
 	JLabel lbl;
 	JPanel p;
@@ -28,14 +30,15 @@ public class Event extends JFrame implements MouseListener, KeyListener, MouseMo
 		this.addKeyListener(this);
 		
 		p = new JPanel();
-		p.setLayout(null);
-
-		lbl = new JLabel("■");
-		lbl.setSize(20, 20);
-		lbl.setLocation(50, 50);
-		lbl.addMouseListener(this);
+//		p.setLayout(null);
+//
+//		lbl = new JLabel("■");
+//		lbl.setSize(20, 20);
+//		lbl.setLocation(50, 50);
+//		lbl.addMouseListener(this);
 		
-//		lbl = new JLabel("Love Java");
+		lbl = new JLabel("Love Java");
+		lbl.addMouseWheelListener(this);
 
 		p.add(lbl);
 		add(p);
@@ -60,11 +63,11 @@ public class Event extends JFrame implements MouseListener, KeyListener, MouseMo
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		int xBound = p.getWidth() - lbl.getWidth(); 
-		int yBound = p.getHeight() - lbl.getHeight(); 
-		int x = (int)(Math.random()*xBound);
-		int y = (int)(Math.random()*yBound);
-		lbl.setLocation(x, y);
+//		int xBound = p.getWidth() - lbl.getWidth(); 
+//		int yBound = p.getHeight() - lbl.getHeight(); 
+//		int x = (int)(Math.random()*xBound);
+//		int y = (int)(Math.random()*yBound);
+//		lbl.setLocation(x, y);
 	}
 
 	@Override
@@ -129,6 +132,19 @@ public class Event extends JFrame implements MouseListener, KeyListener, MouseMo
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		int n = e.getWheelRotation();
+		System.out.println(n);
+		size = lbl.getFont().getSize();
+		if(n > 0) {
+			lbl.setFont(new Font("", ABORT, size + (5*n)));
+		}
+		else if(n < 0){
+			lbl.setFont(new Font("", ABORT, size - (5 * (-n))));
+		}
 	}
 
 }
