@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.StringTokenizer;
@@ -227,12 +229,64 @@ class Five extends JFrame implements ActionListener{
 	
 }
 
-class Six extends JFrame{
+class Six extends JFrame implements KeyListener{
+	
+	JTextField beforeTf, afterTf;
+	JRadioButton bin, oct, hex;
+	
 	public Six() {
-		this.setSize(500, 400);
+		this.setSize(300, 100);
 		this.setLocationRelativeTo(this);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setTitle("파일 저장");
+		this.setTitle("Digit Changer");
+		this.setLayout(new FlowLayout());
+		
+		beforeTf = new JTextField(9);
+		beforeTf.addKeyListener(this);
+		JLabel arrow = new JLabel("→");
+		afterTf = new JTextField(9);
+		afterTf.setEnabled(false);
+		
+		ButtonGroup group = new ButtonGroup();
+		bin = new JRadioButton("binary");
+		group.add(bin);
+		oct = new JRadioButton("octal");
+		group.add(oct);
+		hex = new JRadioButton("hex");
+		group.add(hex);
+		
+		add(beforeTf);
+		add(arrow);
+		add(afterTf);
+		add(bin);
+		bin.setSelected(true);
+		add(oct);
+		add(hex);
+		
+		this.setVisible(true);
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		String input = beforeTf.getText();
+		int num = Integer.parseInt(input);
+		if(bin.isSelected()) {
+			afterTf.setText(Integer.toBinaryString(num));
+		}
+		else if(oct.isSelected()) {
+			afterTf.setText(Integer.toOctalString(num));
+		}
+		else if (hex.isSelected()) {
+			afterTf.setText(Integer.toHexString(num));				
+		}
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
 	}
 }
 
