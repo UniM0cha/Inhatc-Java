@@ -21,6 +21,7 @@ public class ListComboEx extends JFrame implements ActionListener{
 	private JButton btnRight, btnLeft;
 	private JComboBox<String> cb;
 	private Vector<String> cbVec = new Vector<>();
+	
 
 	public ListComboEx(int width, int height, String title) {
 		// TODO 프레임 정의
@@ -37,8 +38,8 @@ public class ListComboEx extends JFrame implements ActionListener{
 		// 멤버함수로 구현
 		createWest();
 		createCenter();
-		
 		createEast();
+		
 		this.setVisible(true);
 	}
 

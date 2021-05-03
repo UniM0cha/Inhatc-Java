@@ -1,25 +1,34 @@
 package jaaaaava;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -287,19 +296,189 @@ class Six extends JFrame implements KeyListener{
 	}
 }
 
-class ComponentSeven extends JFrame {
+class ComponentSeven extends JFrame implements MouseListener, MouseMotionListener {
 	
-	ImageIcon ico = new ImageIcon("img/icons8-arrow-100");
+	ImageIcon ico = new ImageIcon("img/icons8-arrow-100.png");
 	JLabel lbl;
 	
 	public ComponentSeven() {
-		this.setSize(200,200);
+		this.setSize(500,500);
 		this.setLocationRelativeTo(this);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setTitle("이미지 드래깅");
+		this.setLayout(null);
 		
+		lbl = new JLabel(ico);
+		lbl.setLocation(50, 50);
+		lbl.setSize(50,50);
+		lbl.addMouseMotionListener(this);
+		this.add(lbl);
 		
+		this.setVisible(true);
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		System.out.println(e.getPoint().getX() + ", " +  e.getPoint().getY());
 		
+		double currentX = lbl.getX();
+		double currentY = lbl.getY();
+		double dragX = e.getPoint().getX();
+		double dragY = e.getPoint().getY();
+		
+		lbl.setLocation((int) Math.round(currentX + dragX - 25), (int) Math.round(currentY + dragY - 25));
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+}
+
+class ComponentEight extends JFrame implements MouseListener {
+	
+	JLabel[] lbl = new JLabel[10];
+	
+	public ComponentEight() {
+		this.setTitle("Ten 레이블 클릭");
+		this.setSize(300, 300);
+		this.setLocationRelativeTo(this);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setLayout(null);
+		
+		for(int i = 0; i < 10; i++) {
+			lbl[i] = new JLabel(i + "");
+			lbl[i].setSize(10,10);
+			lbl[i].setForeground(Color.magenta);
+			lbl[i].setLocation((int)(Math.random() * 280 + 10), (int)(Math.random() * 270 + 10));
+			lbl[i].addMouseListener(this);
+			this.add(lbl[i]);
+		}
+		
+		this.setVisible(true);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		Object obj = e.getSource();
+		for(int i = 0; i < 10; i++) {
+			if(obj == lbl[i]) {
+				break;
+			}
+		}
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+}
+
+class Component9 extends JFrame {
+	
+	JButton btnSave, btnFind;
+	JList<String> list;
+	DefaultListModel<String> model = new DefaultListModel<>();
+	
+	public Component9() {
+		this.setTitle("단어 사전");
+		this.setSize(500, 400);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+	
+		JPanel north = new JPanel();
+		
+		btnSave = new JButton("저장");
+		btnFind = new JButton("찾기");
+		
+		JPanel center = new JPanel(new BorderLayout());
+		center.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+		model.addElement("아오");
+		
+		list = new JList<String>(model);
+		
+		north.add(btnSave);
+		north.add(btnFind);
+		
+		add(north, BorderLayout.NORTH);
+		
+		center.add(list);
+		
+		add(center, BorderLayout.CENTER);
+		
+		this.setVisible(true);
+	}
+}
+class Component9Sub extends JFrame {
+	
+	JTextField eng, kor;
+	
+	public Component9Sub() {
+		this.setTitle("저장");
+		this.setSize(300,200);
+		this.setLayout(new FlowLayout());
+		
+		JLabel lblEng = new JLabel("영어");
+		eng = new JTextField(10);
+		JLabel lblKor = new JLabel("한글");
+		kor = new JTextField(10);
+		
+		add(lblEng);
+		add(eng);
+		add(lblKor);
+		add(kor);
 		
 		
 		
@@ -318,7 +497,9 @@ public class Component extends JFrame{
 //		new Four();
 //		new Five();
 //		new Six();
-		new ComponentSeven();
+//		new ComponentSeven();
+//		new ComponentEight();
+		new Component9();
 	}
 
 }
