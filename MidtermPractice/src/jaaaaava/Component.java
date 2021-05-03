@@ -287,6 +287,28 @@ class Six extends JFrame implements KeyListener{
 	}
 }
 
+class ComponentSeven extends JFrame {
+	
+	ImageIcon ico = new ImageIcon("img/icons8-arrow-100");
+	JLabel lbl;
+	
+	public ComponentSeven() {
+		this.setSize(200,200);
+		this.setLocationRelativeTo(this);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setTitle("이미지 드래깅");
+		
+		
+		
+		
+		
+		
+		this.setVisible(true);
+	}
+	
+	
+}
+
 public class Component extends JFrame{
 
 	public static void main(String[] args) {
@@ -295,7 +317,8 @@ public class Component extends JFrame{
 //		new Three();
 //		new Four();
 //		new Five();
-		new Six();
+//		new Six();
+		new ComponentSeven();
 	}
 
 }

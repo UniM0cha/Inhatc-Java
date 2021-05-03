@@ -2,6 +2,7 @@ package jaaaaava;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,28 +13,25 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class GUI extends JFrame implements ActionListener{
+public class GUI {
+
+	public static void main(String[] args) {
+		new Seven(); 
+	}
+}
+
+class Seven extends JFrame implements ActionListener {
 	
-//	JButton btn;
-//	JLabel one, plus, two, three;
 	JButton newStar, exit, edit;
 	JTextField tf;
 	int num = 10;
 	JPanel center;
 	
-	public GUI() {
-//		this.setSize(400, 200);
+	public Seven() {
 		this.setSize(300, 300);
 		this.setLocationRelativeTo(this);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		this.setTitle("Let's study Java");
-//		this.setTitle("BorderLayout Practice");
-//		this.setTitle("FlowLayout Practice");
-//		this.setTitle("Random Labels");
 		this.setTitle("3개의 패널을 가진 어쩌구");
-//		this.setLayout(new BorderLayout(50,5));
-//		this.setLayout(new FlowLayout());
-//		this.setLayout(null);
 		this.setLayout(new BorderLayout());
 		
 		JPanel north = new JPanel();
@@ -58,56 +56,12 @@ public class GUI extends JFrame implements ActionListener{
 		south.add(tf);
 		this.add(south, BorderLayout.SOUTH);
 		
-		
-//		for(int i = 0; i < 19; i++) {
-//			JLabel lbl = new JLabel(Integer.toString(i));
-//			int x = (int)(Math.random()*220) + 30;
-//			int y = (int)(Math.random()*220) + 30;
-//			lbl.setLocation(x,y);
-//			lbl.setSize(20,20);
-//			lbl.setForeground(Color.magenta);
-//			add(lbl);
-//		}
-		
-//		one = new JLabel("100");
-//		plus = new JLabel("+");
-//		two = new JLabel("200");
-//		btn = new JButton("=");
-//		btn.addActionListener(this);
-//		three = new JLabel("");
-//		
-//		add(one);
-//		add(plus);
-//		add(two);
-//		add(btn);
-//		add(three);
-		
-//		JButton north = new JButton("North");
-//		JButton west = new JButton("West");
-//		JButton center = new JButton("Center");
-//		JButton east = new JButton("East");
-//		JButton south = new JButton("South");
-		
-//		add(north,BorderLayout.NORTH);
-//		add(west,BorderLayout.WEST);
-//		add(center,BorderLayout.CENTER);
-//		add(east,BorderLayout.EAST);
-//		add(south,BorderLayout.SOUTH);
-		
-		
 		this.setVisible(true);
-	}
-
-	public static void main(String[] args) {
-		new GUI(); 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
-//		if (obj == btn) {
-//			three.setText((Integer.parseInt(one.getText()) + Integer.parseInt(two.getText())) + "");
-//		}
 		
 		if(obj == newStar) {
 			newStarCreate();
@@ -137,4 +91,3 @@ public class GUI extends JFrame implements ActionListener{
 		center.repaint();
 	}
 }
-
