@@ -63,27 +63,7 @@ class One extends JFrame {
 		add(img4);
 		
 		//issue1
-		System.out.println("하하호호 재밌다.");
-		System.out.println("하하호호 재밌다.");
-		System.out.println("하하호호 재밌다.");
-		System.out.println("하하호호 재밌다.");
-		System.out.println("하하호호 재밌다.");
-		System.out.println("하하호호 재밌다.");
-		System.out.println("하하호호 재밌다.");
-		System.out.println("하하호호 재밌다.");
-		System.out.println("하하호호 재밌다.");
-		System.out.println("하하호호 재밌다.");
-		System.out.println("하하호호 재밌다.");
-		System.out.println("하하호호 재밌다.");
-		System.out.println("하하호호 재밌다.");
-		System.out.println("하하호호 재밌다.");
-		System.out.println("하하호호 재밌다.");
-		System.out.println("하하호호 재밌다.");
-		System.out.println("하하호호 재밌다.");
-		System.out.println("하하호호 재밌다.");
-		System.out.println("하하호호 재밌다.");
-		System.out.println("하하호호 재밌다.");
-		System.out.println("하하호호 재밌다.");
+		
 		
 		
 		
