@@ -41,6 +41,7 @@ public class ContentPaneFrame extends JFrame {
 	public static void main(String[] args) {
 		// 초기화 할 때 아예 제목, 크기를 정해주자
 		new ContentPaneFrame("ContentPane 프레임", 350, 150);
+		new ContentPaneFrame("ContentPane 프레임", 350, 150);
 		
 	}
 
