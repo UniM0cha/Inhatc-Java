@@ -61,19 +61,6 @@ class One extends JFrame {
 		add(img2);
 		add(img3);
 		add(img4);
-		
-		//issue1
-		
-		
-		
-		
-		
-		//issue2
-		
-		
-		
-		
-		
 
 		this.setVisible(true);
 	}
