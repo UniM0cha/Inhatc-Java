@@ -532,7 +532,7 @@ class Component9Sub extends JFrame implements ActionListener {
 public class Component extends JFrame {
 
 	public static void main(String[] args) {
-//		new One();
+		new One();
 //		new Two();
 //		new Three();
 //		new Four();
@@ -540,7 +540,7 @@ public class Component extends JFrame {
 //		new Six();
 //		new ComponentSeven();
 //		new ComponentEight();
-		new Component9();
+//		new Component9();
 	}
 
 }
