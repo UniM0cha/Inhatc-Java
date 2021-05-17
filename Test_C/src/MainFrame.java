@@ -31,7 +31,7 @@ public class MainFrame extends JFrame implements ActionListener {
 
 		JMenuBar mb = new JMenuBar();
 		JMenu menu = new JMenu("문제");
-		item = new JMenuItem("정윤이찌찌흑찌찌");
+		item = new JMenuItem("간단계산기");
 		item.addActionListener(this);
 
 		JScrollPane sp = new JScrollPane(list, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
