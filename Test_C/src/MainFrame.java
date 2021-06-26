@@ -24,7 +24,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	JList<String> list = new JList<>(model);
 
 	public MainFrame() {
-		this.setTitle("201845092 이정윤");
+		this.setTitle("201845092 김승민");
 		this.setLocationRelativeTo(this);
 		this.setSize(300, 300);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
